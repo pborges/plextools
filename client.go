@@ -8,7 +8,8 @@ import (
 
 func sanitize(s string) string {
 	s = strings.Replace(s, "/", "-", -1)
-	s = strings.Replace(s, "&", " and ", -1)
+	s = strings.Replace(s, " & ", " and ", -1)
+	s = strings.Replace(s, "&", "and", -1)
 	s = strings.Replace(s, ".", "", -1)
 	s = strings.Replace(s, "'", "", -1)
 	s = strings.Replace(s, "!", "", -1)
