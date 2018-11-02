@@ -51,8 +51,9 @@ func main() {
 func check(e plextools.NamedEntry, doRename bool) {
 	ext := path.Ext(e.FilePath())
 	diskPath := path.Dir(e.FilePath())
-	filenameMismatch := path.Base(e.FilePath()) != e.FormattedFileName()+ext
 	newFilename := path.Join(diskPath, e.FormattedFileName()+ext)
+
+	filenameMismatch := e.FilePath() != newFilename
 
 	filenameCheck := "✓"
 	if filenameMismatch {
@@ -60,6 +61,7 @@ func check(e plextools.NamedEntry, doRename bool) {
 	}
 
 	fmt.Printf("\t[%s] %s", filenameCheck, e.FilePath())
+
 	if filenameMismatch {
 		fmt.Printf(" -> %s", newFilename)
 		if doRename {
